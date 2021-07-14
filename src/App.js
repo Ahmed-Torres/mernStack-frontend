@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import React from 'react'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+//browserrouter es el componente que nos permite crear rutas en nuestra app, 
+//o sea, url's(es el contenedor)browserrouter = router != route
+//y route, es una manera de poder espesificar estas rutas,(son las rutas)
+import  'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
+
+
+import Nav from './components/Nav'
+import NotesList from './components/NotesList'
+import CreateNote from './components/CreateNote'
+import CreateUser from './components/CreateUser'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Nav />
+      <div className="container p-4">
+        <Route path="/" exact component={NotesList} />
+        <Route path="/edit/:id" component={CreateNote} />
+        <Route path="/create" component={CreateNote} />
+        <Route path="/user" component={CreateUser} />
+      </div>
+    </Router>
   );
 }
 
